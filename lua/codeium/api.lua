@@ -376,7 +376,6 @@ function Server:new()
 			other_documents = other_documents,
 		}, function(body, err)
 			if err then
-				return complete(false, nil)
 				if err.status == 503 or err.status == 408 or err.status == 500 then
 					-- Service Unavailable or Timeout error
 					return complete(false, nil)
@@ -395,8 +394,7 @@ function Server:new()
 						return complete(false, nil)
 					end
 				end
-
-				notify.error("completion request fucked", err)
+					
 				complete(false, nil)
 				return
 			end
